@@ -9,13 +9,13 @@
 		public function __construct(){
 			$this->conn=mysql_connect($this->host,$this->username,$this->password);
 			if(!$this->conn){
-				die('Á¬½ÓÊ§°Ü£¡'.mysql_error());
+				die('è¿æ¥å¤±è´¥ï¼'.mysql_error());
 			}
-			mysql_select_db($this->database,$this->conn) or die('Ñ¡ÔñÊı¾İ¿âÊ§°Ü£¡'.mysql_error());
+			mysql_select_db($this->database,$this->conn) or die('é€‰æ‹©æ•°æ®åº“å¤±è´¥ï¼'.mysql_error());
 			mysql_query('set names utf8',$this->conn);
 		}
 		public function dml($sql){
-			$res=mysql_query($sql,$this->conn) or die('Óï¾äÓĞÎó£¡'.mysql_errno());
+			$res=mysql_query($sql,$this->conn) or die('è¯­å¥æœ‰è¯¯ï¼'.mysql_errno());
 			if($res){
 				if(mysql_affected_rows($this->conn)>0){
 					return 1;
@@ -27,7 +27,7 @@
 			}
 		}
 		public function dql($sql){
-			$res=mysql_query($sql,$this->conn) or die('Óï¾äÓĞÎó£¡'.mysql_errno());
+			$res=mysql_query($sql,$this->conn) or die('è¯­å¥æœ‰è¯¯ï¼'.mysql_errno());
 			$arr=array();
 			$i=0;
 			while($row=mysql_fetch_assoc($res)){
