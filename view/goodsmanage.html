@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>管理商品</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="./css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+<link href="./css/bootstrap-responsive.min.css" rel="stylesheet"/>
+<style>
+    body{
+        background:url('./img/bg.png');   
+    }
+    .load{
+        display:none;   
+    }
+    .table{
+        background-color:white;   
+    }
+    .table td,.table th{
+        text-align:center;
+    }
+    button{
+        margin:10px;   
+    }
+    .add{
+        cursor:pointer;  
+    }
+    img{
+        width:100px;   
+    }
+</style>
+</head>
+<body>
+<div class="container load">
+  <h3>添加商品</h3>
+  <form action="../controller/GoodsController.php" method="post" enctype="multipart/form-data">
+    <table class="table table-bordered table-hover addgood">
+        <tr><th>名字:</th><td><input type="text" name="name" class="span6"/></td></tr>
+        <tr><th>原价:</th><td><input type="text" name="price_before" class="span6"/></td></tr>
+        <tr><th>现价:</th><td><input type="text" name="price_now" class="span6"/></td></tr>
+        <tr><th>运费:</th><td><input type="text" name="freight" class="span6"/></td></tr>
+        <tr><th>库存:</th><td><input type="text" name="num" class="span6"/></td></tr>
+        <tr><th>详情:</th><td><textarea rows="3" name="detail" class="span6"></textarea></td></tr>
+		<tr><th>颜色:</th><td><input type="text" name="color[]" class="span6"/></td></tr>
+		<tr class="addcolor"><th colspan="2"><i class="icon-plus"></i></th></tr>
+		<tr><th>大小:</th><td><input type="text" name="size[]" class="span6"/></td></tr>
+		<tr class="addsize"><th colspan="2"><i class="icon-plus"></i></th></tr>
+        <tr><th>图片上传:</th><td><input type="file" name="file[]" class="span6"/></td></tr>
+        <tr class="addimg"><th colspan="2"><i class="icon-plus"></i></th></tr>
+        <tr><th colspan="2"><button type="submit" class="btn btn-primary">提交</button><button type="reset" class="btn btn-inverse">重置</button></th></tr>
+    </table>
+    <input type="hidden" name="opt" value="add"/>
+  </form>
+  <h3>管理商品</h3>
+  <table class="table table-bordered table-hover">
+      <tr><th>编号</th><th>图片</th><th>名称</th><th>原价/现价</th><th>运费</th><th>库存</th><th>商品详情</th><th>管理</th></tr>
+
+  </table>
+    
+</div>
+<script src="./js/jquery.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script>
+    $('.load').fadeIn(1000);
+    $('.addimg').click(function (){
+    	$('.addgood').find('tr').eq(-3).after($('<tr><th>图片上传:</th><td><input type="file" name="file[]" class="span6"/></td></tr>'));
+    });
+	$('.addcolor').click(function (){
+    	$('.addgood').find('tr').eq(-7).after($('<tr><th>颜色:</th><td><input type="text" name="color[]" class="span6"/></td></tr>'));
+    });
+	$('.addsize').click(function (){
+    	$('.addgood').find('tr').eq(-5).after($('<tr><th>大小:</th><td><input type="text" name="size[]" class="span6"/></td></tr>'));
+    });
+</script>
+</body>
+</html>
